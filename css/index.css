@@ -1,20 +1,28 @@
 :root {
   --col-bg: #ffffff;
   --col-bg-fg: #222222;
+
   --col-accent1:  palevioletred;
   --col-accent1-fg: #000000;
+
   --col-accent2:  plum;
   --col-accent2-fg: #000000;
+
   --col-accent3:  mediumslateblue;
   --col-accent3-fg: #ffffff;
+
   --col-action: firebrick;
   --col-action-fg: #ffffff;
+
   --col-error: tomato;
   --col-error-fg: #000000;
+
   --font-body: serif;
   --font-heading: sans-serif;
   --animations: 0.3s;
 }
+
+/* variables always start with '--' */
 
 body {
   background-color: var(--col-bg);
@@ -35,11 +43,13 @@ h1 {
 .branding {
   background-color: var(--col-accent2);
   color: var(--col-accent2-fg);
-  position: fixed;
+  position: fixed; 
+  /* margin ends up inside since fixed elements are independent */
   top: 0;
   left: 0;
   z-index: 2;
   width: 100%;
+  /*  = 100vw (viewport width) */
   overflow: hidden;
   text-align: center;
 }
@@ -51,24 +61,42 @@ h1 {
   top: 0;
   left: -100%;
   z-index: 3;
+  /* higher indext, more front */
   width: 100%;
   height: 100%;
   padding: 0 1em;
   padding-top: 2.1875em;
+  /* can use margin */
 }
-  .others .panel {
-    overflow-y: scroll;
-    opacity: 0;
-    transition: opacity var(--animations);
-  }
 
+.others {
+  top: 2.1875em;
+  left: 0;
+  width: 15em;
+  height: calc(100% - 2.1875em);
+  /* return with pixcel value */
+  z-index: 1;
+  padding: 1em;
+}
+
+.others .panel {
+  overflow-y: scroll;
+  opacity: 0;
+  transition: opacity var(--animations);
+  /* animation - usually 300ms or 0.3s */
+}
+
+/* adding open class - when click toggle btn, pannel will open */
+/* order doesnt matter - since  */
 .others.open {
   left: 0;
 }
-  .others.open .panel {
-    opacity: 1;
-  }
+.others.open .panel {
+  opacity: 1;
+}
 
+
+/* toggle btn cannot be showed using z-index since it is inside of others section */
 .toggle-others {
   background-color: var(--col-accent3);
   color: var(--col-accent3-fg);
@@ -130,7 +158,7 @@ h1 {
 
 @media screen and (min-width: 60em) {
 
-
+  /* always use min-width */
 
   .others {
     width: 30em;
